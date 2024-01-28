@@ -8,6 +8,7 @@ module.exports = {
       satoshi: ["Satoshi", "sans-serif"],
     },
     colors: {
+      buttonColor: "#065F46;",
       current: "currentColor",
       transparent: "transparent",
       white: "#FFFFFF",
