@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>{children}</body>
+      <body suppressHydrationWarning={true} className="bg-[url('/images/background/project-bg.jpg')] bg-cover">{children}</body>
     </html>
   );
 }
