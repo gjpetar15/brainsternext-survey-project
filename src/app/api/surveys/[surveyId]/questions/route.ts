@@ -42,7 +42,7 @@ export const POST = routeHandler(async (request, context) => {
     data: {
       questions: {
         create: {
-          position: survey.questions.length,
+          position: survey.questions.length + 1,
           ...data,
         },
       },
