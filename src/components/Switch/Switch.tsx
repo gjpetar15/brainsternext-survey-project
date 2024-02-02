@@ -1,21 +1,40 @@
 "use client";
 import { useState } from "react";
 
-export default function Switch() {
-  const [enabled, setEnabled] = useState(false);
+interface SwitchProps {
+  surveyId: string;
+  questionId: string;
+  questionRequired: boolean;
+}
+
+export default function Switch(props: SwitchProps) {
+  const [enabled, setEnabled] = useState(props.questionRequired);
+
+  const handleQuestionRequiredChange = async (enabled: boolean) => {
+    const response = await fetch(
+      `/api/surveys/${props.surveyId}/questions/${props.questionId}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          required: enabled,
+        }),
+      }
+    );
+  };
 
   return (
     <div>
       <label
-        htmlFor="toggle3"
+        htmlFor={props.questionId}
         className="flex cursor-pointer select-none items-center"
       >
         <div className="relative">
           <input
             type="checkbox"
-            id="toggle3"
+            id={props.questionId}
             className="sr-only"
             onChange={() => {
+              handleQuestionRequiredChange(!enabled);
               setEnabled(!enabled);
             }}
           />

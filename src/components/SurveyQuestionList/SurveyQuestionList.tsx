@@ -9,9 +9,12 @@ import {
   Store,
 } from "react-sortablejs";
 import Switch from "../Switch/Switch";
-// import { questions as mockQuestions } from "@/_mocks/questions";
+
 import { QuestionsDTO } from "@/types/QuestionDTO";
-import { debounce, isNumber, noop } from "lodash";
+import { debounce, indexOf, isNumber, noop } from "lodash";
+import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
+import { Question } from "@prisma/client";
+import { Alert } from "@mui/material";
 
 interface SurveyQuestionListProps {
   surveyId: string;
@@ -34,6 +37,18 @@ export default function SurveyQuestionList({
       method: "POST",
       body: JSON.stringify({
         text,
+      }),
+    });
+
+    getQuestions();
+  };
+
+  const handleDuplicateQuestion = async (questionId: string) => {
+    const question = questions?.find((q) => q.id === questionId);
+    await fetch(`/api/surveys/${surveyId}/questions`, {
+      method: "POST",
+      body: JSON.stringify({
+        text: question?.text,
       }),
     });
 
@@ -69,6 +84,38 @@ export default function SurveyQuestionList({
     );
     const { data } = await response.json();
     console.log(data);
+  };
+
+  const handleQuestionDelete = async (questionId: string) => {
+    try {
+      const response = await fetch(
+        `/api/surveys/${surveyId}/questions/${questionId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      const index = questions.findIndex((q: Question) => q.id === questionId);
+
+      if (index !== -1) {
+        const questionsAfterDeleted = questions.slice(index + 1);
+        for (const question of questionsAfterDeleted) {
+          const response = await fetch(
+            `/api/surveys/${surveyId}/questions/${question.id}`,
+            {
+              method: "PATCH",
+              body: JSON.stringify({
+                position: question.position - 1,
+              }),
+            }
+          );
+        }
+      }
+
+      getQuestions();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -114,14 +161,23 @@ export default function SurveyQuestionList({
               {item.text}
             </div>
             <div className="col-span-1">
-              <Switch />
+              <Switch
+                surveyId={surveyId}
+                questionRequired={item.required}
+                questionId={item.id}
+              />
             </div>
             <div className="col-span-1 flex items-center justify-end">
               <button className="hover:text-primary py-2 px-2 rounded text-lg">
-                <FaClone />
+                <FaClone onClick={() => handleDuplicateQuestion(item.id)} />
               </button>
               <button className="hover:text-primary py-2 px-2 rounded text-lg">
-                <FaTrash />
+                <ConfirmationDialog
+                  message="Are you sure you want to delete this question?"
+                  handleConfirm={() => handleQuestionDelete(item.id)}
+                >
+                  <FaTrash />
+                </ConfirmationDialog>
               </button>
             </div>
           </div>
