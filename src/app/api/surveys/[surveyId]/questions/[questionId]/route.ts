@@ -2,6 +2,18 @@ import routeHandler from "@/lib/routeHandler";
 import prisma from "@/lib/prisma";
 import { isUndefined } from "lodash";
 
+export const GET = routeHandler(async (request, context) => {
+  const { surveyId, questionId } = context.params;
+  const question = await prisma.question.findFirstOrThrow({
+    where: {
+      id: questionId,
+      surveyId,
+    },
+  });
+
+  return question;
+});
+
 export const PATCH = routeHandler(async (request, context) => {
   const { surveyId, questionId } = context.params;
   const data = await request.json();

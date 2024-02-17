@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 export default function DashboardPage() {
-  return <div>Welcome to dashboard</div>;
+  return redirect("/dashboard/surveys");
 }

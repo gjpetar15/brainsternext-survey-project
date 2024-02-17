@@ -2,12 +2,7 @@
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { FaClone, FaTrash } from "react-icons/fa";
 import { IoReorderThreeSharp } from "react-icons/io5";
-import {
-  ReactSortable,
-  Sortable,
-  SortableEvent,
-  Store,
-} from "react-sortablejs";
+import { ReactSortable, SortableEvent } from "react-sortablejs";
 import Switch from "../Switch/Switch";
 
 import { QuestionsDTO } from "@/types/QuestionDTO";
@@ -33,6 +28,7 @@ export default function SurveyQuestionList({
 
   const handleAddQuestion = async () => {
     const text = prompt("Whats the question?");
+    if (!text) return;
     await fetch(`/api/surveys/${surveyId}/questions`, {
       method: "POST",
       body: JSON.stringify({
@@ -83,7 +79,6 @@ export default function SurveyQuestionList({
       }
     );
     const { data } = await response.json();
-    console.log(data);
   };
 
   const handleQuestionDelete = async (questionId: string) => {
