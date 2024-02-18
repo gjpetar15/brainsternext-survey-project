@@ -90,19 +90,19 @@ export default async function SurveyQuestionReportPage({
               Back to questions list
             </Link>
             {question.report ? (
-              <div className="border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-                <h6 className="border-b border-[#eee] dark:border-strokedark p-3 text-center font-medium text-black dark:text-white">
+              <div className="border border-stroke bg-gray-2 shadow-default dark:border-strokedark dark:bg-boxdark">
+                <h6 className="border-b border-[#eee] bg-gray-2 text-black font-semibold text-lg p-3 text-center">
                   Sentiment score
                 </h6>
                 <SentimentScoreMeter value={question.report.sentimentScore} />
               </div>
             ) : null}
             {keywords.length ? (
-              <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-                <table className="w-full table-auto">
+              <div className="rounded-sm border border-stroke shadow-default">
+                <table className="w-full table-auto bg-[#D9D9D9]/50 backdrop-blur-[2px]">
                   <thead>
-                    <tr>
-                      <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white border-b border-[#eee]">
+                    <tr className="bg-gray-2 text-left text-lg">
+                      <th className="min-w-[120px] py-4 px-4 font-bold text-black xl:pl-11">
                         Keywords
                       </th>
                     </tr>
@@ -110,7 +110,7 @@ export default async function SurveyQuestionReportPage({
                   <tbody>
                     {keywords.map((keyword) => (
                       <tr key={keyword}>
-                        <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark xl:pl-11">
+                        <td className="border-b border-[#eee] text-white font-semibold text-lg py-5 px-4 xl:pl-11">
                           {keyword}
                         </td>
                       </tr>
