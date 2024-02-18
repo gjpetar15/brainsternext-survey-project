@@ -3,9 +3,12 @@ import SurveyForm from "@/components/SurveyForm/SurveyForm";
 import { SurveyDTO } from "@/types/SurveyDTO";
 import { SurveyStatus } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { UserContext } from "../../layout";
+import React from "react";
 
 export default function SurveyCreatePage() {
   const router = useRouter();
+  const { setOpen, setMessage } = React.useContext(UserContext);
 
   const createSurvey = async (formData: FormData) => {
     const data: Partial<SurveyDTO["data"]> = {
@@ -22,8 +25,12 @@ export default function SurveyCreatePage() {
       });
       const jsonData = await response.json();
       router.push(`/dashboard/surveys/${jsonData.data.id}`);
+      setMessage("Survey created successfully");
+      setOpen(true);
     } catch (error) {
       console.error(error);
+      setMessage("Error creating survey");
+      setOpen(true);
     }
   };
 
