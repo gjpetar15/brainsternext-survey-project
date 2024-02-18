@@ -1,15 +1,11 @@
 "use client";
 import { FormEvent, useCallback, useEffect, useState } from "react";
-import { FaClone, FaTrash } from "react-icons/fa";
-import { IoReorderThreeSharp } from "react-icons/io5";
 import { ReactSortable, SortableEvent } from "react-sortablejs";
-import Switch from "../Switch/Switch";
+import QuestionTemplate from "../QuestionTemplate/QuestionTemplate";
 
 import { QuestionsDTO } from "@/types/QuestionDTO";
-import { debounce, indexOf, isNumber, noop } from "lodash";
-import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
+import { debounce, isNumber, noop } from "lodash";
 import { Question } from "@prisma/client";
-import { Alert } from "@mui/material";
 
 interface SurveyQuestionListProps {
   surveyId: string;
@@ -27,12 +23,10 @@ export default function SurveyQuestionList({
   }, [surveyId]);
 
   const handleAddQuestion = async () => {
-    const text = prompt("Whats the question?");
-    if (!text) return;
     await fetch(`/api/surveys/${surveyId}/questions`, {
       method: "POST",
       body: JSON.stringify({
-        text,
+        text: `Question ${questions.length + 1}`,
       }),
     });
 
@@ -139,43 +133,17 @@ export default function SurveyQuestionList({
         onEnd={handlePositionChange}
       >
         {questions.map((item) => (
-          <div
-            className="grid grid-cols-7 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-9 md:px-6 2xl:px-7.5"
+          <QuestionTemplate
             key={item.id}
-          >
-            <div className="col-span-1 flex items-center gap-2 handle cursor-move">
-              <IoReorderThreeSharp className="text-2xl" />
-              {item.position}
-            </div>
-            <div
-              className="col-span-6 flex items-center !border-0 !outline-0"
-              contentEditable
-              onInput={(e) => handleQuestionTextChange(e, item.id)}
-              suppressContentEditableWarning={true}
-            >
-              {item.text}
-            </div>
-            <div className="col-span-1">
-              <Switch
-                surveyId={surveyId}
-                questionRequired={item.required}
-                questionId={item.id}
-              />
-            </div>
-            <div className="col-span-1 flex items-center justify-end">
-              <button className="hover:text-primary py-2 px-2 rounded text-lg">
-                <FaClone onClick={() => handleDuplicateQuestion(item.id)} />
-              </button>
-              <button className="hover:text-primary py-2 px-2 rounded text-lg">
-                <ConfirmationDialog
-                  message="Are you sure you want to delete this question?"
-                  handleConfirm={() => handleQuestionDelete(item.id)}
-                >
-                  <FaTrash />
-                </ConfirmationDialog>
-              </button>
-            </div>
-          </div>
+            id={item.id}
+            text={item.text}
+            position={item.position}
+            required={item.required}
+            surveyId={surveyId}
+            handleQuestionDelete={handleQuestionDelete}
+            handleDuplicateQuestion={handleDuplicateQuestion}
+            handleQuestionTextChange={handleQuestionTextChange}
+          />
         ))}
       </ReactSortable>
       <div className="w-full">

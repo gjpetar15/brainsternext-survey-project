@@ -25,8 +25,6 @@ export const PATCH = routeHandler(async (request, context) => {
     },
   });
 
-  console.log(data.position, question.position);
-
   if (!isUndefined(data.position) && question.position !== data.position) {
     const [positionFrom, positionTo] = [
       question.position,
@@ -44,10 +42,6 @@ export const PATCH = routeHandler(async (request, context) => {
           ),
         },
       },
-    });
-
-    console.log({
-      questionsToReposition,
     });
   }
 
