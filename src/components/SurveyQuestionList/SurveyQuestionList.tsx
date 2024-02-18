@@ -112,8 +112,8 @@ export default function SurveyQuestionList({
   }, [getQuestions]);
 
   return (
-    <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="grid grid-cols-7 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-9 md:px-6 2xl:px-7.5">
+    <div className="rounded-sm shadow-default w-[1050px] mx-auto">
+      <div className="grid grid-cols-7 border-t bg-white border-2 border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-9 md:px-6 2xl:px-7.5">
         <div className="col-span-1">
           <p className="font-medium">Position</p>
         </div>
@@ -146,9 +146,9 @@ export default function SurveyQuestionList({
           />
         ))}
       </ReactSortable>
-      <div className="w-full">
+      <div className="w-full flex justify-center mt-2">
         <button
-          className="bg-primary w-full py-2 text-white font-bold"
+          className="bg-transparent w-40 flex justify-center py-2 text-white font-bold hover:bg-[#D9D9D9]/50 hover:backdrop-blur-[2px] border-2 rounded-xl"
           onClick={handleAddQuestion}
         >
           Add a Question

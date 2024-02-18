@@ -2,7 +2,8 @@ import SurveyForm from "@/components/SurveyForm/SurveyForm";
 import SurveyQuestionList from "@/components/SurveyQuestionList/SurveyQuestionList";
 import { SurveyDTO } from "@/types/SurveyDTO";
 import { SurveyStatus } from "@prisma/client";
-
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 const getSurveyById = async (id: string): Promise<SurveyDTO> => {
   const response = await fetch(`${process.env.API_URL}/surveys/${id}`);
   return response.json();
@@ -19,7 +20,6 @@ export default async function SurveyEditPage({
 }: SurveyEditPageParams) {
   const { data: survey } = await getSurveyById(surveyId);
   const title = ["Editing survey", survey.name].join(" ");
-
   const updateSurvey = async (formData: FormData) => {
     "use server";
     const data: Partial<SurveyDTO["data"]> = {
@@ -37,7 +37,16 @@ export default async function SurveyEditPage({
   };
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col ">
+      <div className="w-[1100px] mx-auto">
+        <div className="flex justify-end">
+          <Link href="/dashboard/surveys">
+            <button className=" mr-7 flex items-center space-x-2.5 px-4 py-2 border-2 rounded-xl text-white font-bold hover:bg-[#D9D9D9]/50 hover:backdrop-blur-[2px]">
+              Back to Surveys
+            </button>
+          </Link>
+        </div>
+      </div>
       <SurveyForm
         title={title}
         defaultValues={survey}
