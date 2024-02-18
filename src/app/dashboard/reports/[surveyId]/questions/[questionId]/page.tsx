@@ -94,7 +94,9 @@ export default async function SurveyQuestionReportPage({
                 <h6 className="border-b border-[#eee] bg-gray-2 text-black font-semibold text-lg p-3 text-center">
                   Sentiment score
                 </h6>
-                <SentimentScoreMeter value={question.report.sentimentScore} />
+                <div className="flex justify-center">
+                  <SentimentScoreMeter value={question.report.sentimentScore} />
+                </div>
               </div>
             ) : null}
             {keywords.length ? (
