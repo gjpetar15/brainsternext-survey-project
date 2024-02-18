@@ -20,12 +20,13 @@
     "next": "14.0.4",
     "nodemailer": "^6.9.8",
     "prisma": "^5.7.1",
-    "react-d3-speedometer": "^2.1.0-rc.0",
     "react": "^18",
+    "react-d3-speedometer": "^2.1.0-rc.0",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
     "react-sortablejs": "^6.1.4",
     "sortablejs": "^1.15.1",
+    "styled-components": "^6.1.8",
     "zod": "^3.22.4"
   },
   "devDependencies": {

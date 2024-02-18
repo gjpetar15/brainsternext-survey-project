@@ -1,6 +1,14 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
+  variants: {
+    extend: {
+      backgroundColor: ['responsive', 'hover', 'focus', 'active'],
+    },
+  },
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: ["./src/**/*.{tsx,jsx,md}"],
   darkMode: "class",
   theme: {
@@ -15,6 +23,7 @@ module.exports = {
       black: "#1C2434",
       "black-2": "#010101",
       body: "#64748B",
+      opacityColor: "9A9292",
       bodydark: "#AEB7C0",
       bodydark1: "#DEE4EE",
       bodydark2: "#8A99AF",

@@ -33,7 +33,7 @@ export default function SurveyCreatePage() {
         <h1 className="text-3xl font-semibold text-white">Create Survey</h1>
         <button
           onClick={() => router.push("/dashboard/surveys")}
-          className="flex items-center space-x-2.5 px-4 py-2 bg-primary rounded-md text-white font-medium"
+          className="flex items-center space-x-2.5 px-4 py-2 border border-2 rounded-xl text-white font-bold hover:bg-[#D9D9D9]/50"
         >
           Back to Surveys
         </button>

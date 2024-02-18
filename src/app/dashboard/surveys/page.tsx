@@ -1,7 +1,9 @@
 "use client";
+import 'tailwindcss/tailwind.css';
 import { SurveyListDTO } from "@/types/SurveyListDTO";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
 
 export default function SurveysPage() {
   const router = useRouter();
@@ -32,26 +34,26 @@ export default function SurveysPage() {
         <h1 className="text-3xl font-semibold text-white">Surveys</h1>
         <button
           onClick={() => router.push("/dashboard/surveys/create")}
-          className="flex items-center space-x-2.5 px-4 py-2 bg-primary rounded-md text-white font-medium"
+          className="flex items-center space-x-2.5 px-4 py-2 border border-2 rounded-xl text-white font-bold hover:bg-[#D9D9D9]/50 hover:backdrop-blur-[2px]"
         >
           Create Survey
         </button>
       </div>
-      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="rounded-sm border border-stroke shadow-default dark:bg-boxdark">
         <div className="max-w-full overflow-x-auto">
-          <table className="w-full table-auto">
+          <table className="w-full table-auto bg-[#D9D9D9]/50 backdrop-blur-[2px]">
             <thead>
-              <tr className="bg-gray-2 text-left dark:bg-meta-4">
-                <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+              <tr className="bg-gray-2 text-left dark:bg-meta-4 text-lg">
+                <th className="min-w-[220px] py-4 px-4 font-bold text-black xl:pl-11">
                   Name
                 </th>
-                <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                <th className="min-w-[150px] py-4 px-4 font-bold text-black">
                   Manager
                 </th>
-                <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                <th className="min-w-[120px] py-4 px-4 font-bold text-black">
                   Status
                 </th>
-                <th className="py-4 px-4 font-medium text-black dark:text-white">
+                <th className="py-4 px-4 font-bold text-black">
                   Actions
                 </th>
               </tr>
@@ -59,14 +61,14 @@ export default function SurveysPage() {
             <tbody>
               {surveys?.map((survey, index) => (
                 <tr key={survey.id}>
-                  <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
+                  <td className="border-b border-[#eee] py-5 px-4 pl-9 xl:pl-11">
+                    <h5 className="font-semibold text-lg text-white">
                       {survey.name}
                     </h5>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                     <a
-                      className="text-black dark:text-white"
+                      className="text-white font-semibold text-lg"
                       href={"mailto:" + survey.manager}
                       target="_blank"
                     >
@@ -75,25 +77,25 @@ export default function SurveysPage() {
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                     <p
-                      className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
+                      className={`inline-flex rounded-full bg-opacity-60 py-1 px-3 text-sm font-bold shadow-xl ${
                         survey.status === "ONGOING"
-                          ? "text-success bg-success"
+                          ? "text-white bg-success"
                           : survey.status === "FINISHED"
-                          ? "text-danger bg-danger"
-                          : "text-warning bg-warning"
+                          ? "text-white bg-danger"
+                          : "text-white bg-warning"
                       }`}
                     >
                       {survey.status}
                     </p>
                   </td>
-                  <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <td className="border-b border-[#eee] py-5 px-4">
                     <div className="flex items-center space-x-3.5">
                       <button
                         onClick={() => handleViewSurvey(survey.id)}
-                        className="hover:text-primary"
+                        className="text-white"
                       >
                         <svg
-                          className="fill-current"
+                          className="fill-current hover:text-primary"
                           width="18"
                           height="18"
                           viewBox="0 0 18 18"
@@ -111,11 +113,11 @@ export default function SurveysPage() {
                         </svg>
                       </button>
                       <button
-                        className="hover:text-primary"
+                        className="text-white"
                         onClick={() => handleDeleteSurvey(survey.id)}
                       >
                         <svg
-                          className="fill-current"
+                          className="fill-current hover:text-danger"
                           width="18"
                           height="18"
                           viewBox="0 0 18 18"
