@@ -39,7 +39,7 @@ export default function SurveysPage() {
           Create Survey
         </button>
       </div>
-      <div className="rounded-sm border border-stroke shadow-default dark:bg-boxdark">
+      <div className="rounded-sm shadow-default dark:bg-boxdark">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full table-auto bg-[#D9D9D9]/50 backdrop-blur-[2px]">
             <thead>
@@ -95,7 +95,7 @@ export default function SurveysPage() {
                         className="text-white"
                       >
                         <svg
-                          className="fill-current hover:text-primary"
+                          className="fill-current text-2xl hover:text-primary"
                           width="18"
                           height="18"
                           viewBox="0 0 18 18"
@@ -117,7 +117,7 @@ export default function SurveysPage() {
                         onClick={() => handleDeleteSurvey(survey.id)}
                       >
                         <svg
-                          className="fill-current hover:text-danger"
+                          className="fill-current text-2xl hover:text-danger"
                           width="18"
                           height="18"
                           viewBox="0 0 18 18"
