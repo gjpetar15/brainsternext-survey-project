@@ -20,12 +20,12 @@ export default function AnswerSurveyQuestionsList() {
   }, [getQuestions]);
 
   return (
-    <div className="bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none rounded-md">
+    <div className="bg-white text-black font-bold drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none rounded-md">
       <ul className="divide-y divide-[#eee] rounded-md">
         {questions.map((question) => (
           <li
             className={clsx("flex py-2 px-4 pl-8 relative", {
-              "bg-primary": questionId === question.id,
+              "bg-[#607c3c]": questionId === question.id,
             })}
             key={question.id}
           >
@@ -33,8 +33,8 @@ export default function AnswerSurveyQuestionsList() {
               className={clsx(
                 "absolute top-1/2 transform -translate-y-1/2 left-2 w-4 h-4 bg-blue-500 rounded-full text-xs text-center",
                 {
-                  "bg-primary text-white": questionId !== question.id,
-                  "bg-white text-primary": questionId === question.id,
+                  "bg-black text-white": questionId !== question.id,
+                  "bg-white text-black": questionId === question.id,
                 }
               )}
             >

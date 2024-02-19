@@ -36,14 +36,15 @@ export default function SurveyCreatePage() {
 
   return (
     <>
-      <div className="flex justify-between mb-2">
-        <h1 className="text-3xl font-semibold text-white">Create Survey</h1>
-        <button
-          onClick={() => router.push("/dashboard/surveys")}
-          className="flex items-center space-x-2.5 px-4 py-2 border border-2 rounded-xl text-white font-bold hover:bg-[#D9D9D9]/50"
-        >
-          Back to Surveys
-        </button>
+      <div className="w-[1100px] mx-auto">
+        <div className="flex justify-end">
+          <button
+            onClick={() => router.push("/dashboard/surveys")}
+            className=" mr-7 flex items-center space-x-2.5 px-4 py-2 border-2 rounded-xl text-white font-bold hover:bg-[#D9D9D9]/50 hover:backdrop-blur-[2px]"
+          >
+            Back to Surveys
+          </button>
+        </div>
       </div>
       <SurveyForm title="Create a Survey" updateSurvey={createSurvey} />;
     </>

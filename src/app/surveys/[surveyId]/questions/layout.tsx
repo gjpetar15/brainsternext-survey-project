@@ -10,7 +10,7 @@ export default async function PublicSurveyLayout({
 }: PublicSurveyLayoutProps) {
   return (
     <div className="container mx-auto my-6">
-      <div className="grid grid-cols-7 gap-10">
+      <div className="mx-10 grid grid-cols-7 gap-5">
         <div className="col-span-2">
           <AnswerSurveyQuestionsList />
         </div>

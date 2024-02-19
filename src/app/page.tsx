@@ -25,19 +25,8 @@ export default function Home() {
         <div className="pt-4 justify-start items-start gap-4 inline-flex">
           <div className="py-3 shadow justify-center items-center gap-2 inline-flex">
             <button
+              className="flex items-center space-x-2.5 px-4 py-2 border-2 rounded-xl text-white font-bold hover:bg-[#D9D9D9]/50"
               onClick={changePage}
-              style={{
-                backgroundColor: "transparent",
-                borderRadius: "1rem",
-                textAlign: "center",
-                color: "white",
-                fontSize: "1.5rem",
-                fontWeight: "bold",
-                lineHeight: "2rem",
-                padding: "10px 40px",
-                marginLeft: "5px",
-                border: "4px solid white",
-              }}
             >
               Start
             </button>
