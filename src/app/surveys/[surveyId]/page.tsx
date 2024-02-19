@@ -36,21 +36,18 @@ export default async function PublicSurveysPage({
   ].join("/");
 
   return (
-    <div className="container mx-auto my-6 flex items-center flex-col gap-6">
-      <Image
-        width={32}
-        height={32}
-        src={"/images/logo/logo-icon.svg"}
-        alt="Logo"
-      />
-      <div className="bg-white rounded-md py-6 text-center w-full drop-shadow-1">
-        {survey.introduction}
-      </div>
-      <Link
-        href={startUrl}
-        className="bg-primary uppercase font-bold text-white py-2 px-24 rounded-md"
-      >
-        Let&apos;s start
+    <div className="flex flex-col justify-center items-center h-[100vh]">
+      <h1 className="text-white text-7xl font-bold text-center">
+        Welcome to Our <br /> Survey!
+      </h1>
+      <h1 className="text-white font-bold text-center my-10 text-xl">
+        Your voice matters. This survey is a safe space for your thoughts.
+        <br /> Let's shape our workplace together.
+      </h1>
+      <Link href={startUrl}>
+        <button className="flex items-center space-x-2.5 px-6 py-3 border-2 rounded-xl text-white font-bold hover:bg-[#D9D9D9]/50 hover:backdrop-blur-[2px]">
+          Let's Start!
+        </button>
       </Link>
     </div>
   );

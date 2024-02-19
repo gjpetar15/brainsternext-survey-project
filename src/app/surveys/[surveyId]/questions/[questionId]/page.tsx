@@ -52,20 +52,30 @@ export default function PublicSurveyQuestionPage() {
   };
 
   return (
-    <form className="flex flex-col gap-5" onSubmit={handleFormSubmit}>
-      <textarea
-        ref={inputRef}
-        name="answer"
-        rows={10}
-        className="p-2"
-        required={questionData?.required || false}
-      ></textarea>
-      <button
-        type="submit"
-        className="bg-primary p-2 text-white font-bold rounded-md uppercase"
-      >
-        Submit Answer
-      </button>
-    </form>
+    <div className="">
+      <div className="flex flex-col">
+        <h1 className="bg-[#607c3c]/50 backdrop-blur-[2px] text-white text-xl text-left font-bold mx-20 px-5 py-4 rounded-t-xl">
+          {questionData?.position}.{" "}
+          {questionData ? questionData.text : "Loading..."}
+        </h1>
+        <form className="flex flex-col gap-5 mx-20" onSubmit={handleFormSubmit}>
+          <textarea
+            ref={inputRef}
+            name="answer"
+            rows={10}
+            className="p-2 rounded-b-xl outline-none"
+            required={questionData?.required || false}
+          ></textarea>
+          <div className="text-center">
+            <button
+              type="submit"
+              className="bg-transparent w-[30%] hover:bg-[#D9D9D9]/50 border-2 border-white rounded-full hover:backdrop-blur-[2px] p-2 text-white font-bold uppercase"
+            >
+              Submit Answer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
